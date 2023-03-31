@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ test.title }}</h1>
+  <p>{{ test.description }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    {% for form in formset %} 
+      {% for x in form %}
+        {% if forloop.counter == 1 %} 
+          {{ x.text }}<br>
+          1) {{ x.option1 }}<br>
+          2) {{ x.option2 }}<br>
+          3) {{ x.option3 }}<br>
+          4) {{ x.option4 }}<br>
+        {% else %}
+          Ответ: <select name="user_answer_{{ forloop.parentloop.counter }}" required id="id_user_answer_{{ forloop.parentloop.counter }}">
+            <option value="">---------</option>
+            <option value="1" {% if x.user_answer == "1" %}selected{% endif %}>1</option>
+            <option value="2" {% if x.user_answer == "2" %}selected{% endif %}>2</option>
+            <option value="3" {% if x.user_answer == "3" %}selected{% endif %}>3</option>
+            <option value="4" {% if x.user_answer == "4" %}selected{% endif %}>4</option>
+          </select>
+        {% endif %}
+        <br>
+      {% endfor %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>
+{% endblock %}

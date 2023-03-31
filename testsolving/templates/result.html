@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    {% for answer in result.tanswers.all %}
+        Вопрос: {{answer.question.text}}<br>
+        {% if answer.user_answer == answer.question.correct_answer %}
+            Выбранный ответ: <span style="color: green">{% if answer.user_answer == 1 %}{{answer.question.option1}}{% elif answer.user_answer == 2 %}{{answer.question.option2}}{% elif answer.user_answer == 3 %}{{answer.question.option3}}{%else%}{{answer.question.option4}}{%endif%}</span><br>
+        {% else %}
+            Выбранный ответ: <span style="color: red">{% if answer.user_answer == 1 %}{{answer.question.option1}}{% elif answer.user_answer == 2 %}{{answer.question.option2}}{% elif answer.user_answer == 3 %}{{answer.question.option3}}{%else%}{{answer.question.option4}}{%endif%}</span><br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
