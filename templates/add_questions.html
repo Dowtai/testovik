@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Добавить вопрос для теста "{{ test.title }}"</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ question_form.as_p }}
+    * - обязательное поле<br>
+    <button type="submit" class="btn btn-primary mt-3">Сохранить вопрос</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Закончить создание теста</a>
+  </form>
+{% endblock %}
