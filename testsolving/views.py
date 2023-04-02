@@ -132,5 +132,8 @@ def result(request, result_id):
             allq += 1
             if answer.user_answer == answer.question.correct_answer:
                 goodq += 1
-    percentage = round(goodq/allq * 100, 2)
+    if (allq == 0):
+        percentage = round(100, 2)
+    else:
+        percentage = round(goodq/allq * 100, 2)
     return render(request, 'result.html', {'result': result, 'goodq': goodq, 'allq': allq, 'percentage': percentage, 'ruser': request.user})
