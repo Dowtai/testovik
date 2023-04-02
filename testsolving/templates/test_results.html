@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ test.title }} - Результаты</h1>
+  <ul>
+    {% for result in results %}
+      <li>
+        <a href="{% url 'result' result.id %}">{{result.user.first_name}} {{result.user.last_name}} решил(а) {{ result.time }}</a><br>
+      </li>
+    {% empty %}
+      <li><p>Этот тест ещё никто не решал.</p></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

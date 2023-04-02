@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+    {% block head %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+    <nav>
+        {% if request.resolver_match.url_name != 'home' %}
+            <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+        {% endif %}
+        <!-- Navigation bar code -->
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <!-- Footer code -->
+    </footer>
+</body>
+</html>

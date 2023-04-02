@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    {% if ruser == result.test.author or ruser == result.user %}
+        {% for answer in result.tanswers.all %}
+            <p style="font-size: 42px; font-weight: 400; margin-bottom: 0px">Вопрос:</p>
+            <p style="font-size: 30px; font-weight: 400; margin-bottom: 0px">{{answer.question.text}}</p>
+            {% if answer.question.correct_answer == None %}
+                <p style="font-size: 42px; font-weight: 400; margin-bottom: 0px">Выбранный ответ:</p> <span style="color: black; font-size: 30px; font-weight: 400; margin-bottom: 0px;">{% if answer.user_answer == 1 %}{{answer.question.option1}}{% elif answer.user_answer == 2 %}{{answer.question.option2}}{% elif answer.user_answer == 3 %}{{answer.question.option3}}{%else%}{{answer.question.option4}}{%endif%}</span><br>
+            {% elif answer.user_answer == answer.question.correct_answer %}
+                <p style="font-size: 42px; font-weight: 400; margin-bottom: 0px">Выбранный ответ:</p> <span style="color: green; font-size: 30px; font-weight: 400; margin-bottom: 0px;">{% if answer.user_answer == 1 %}{{answer.question.option1}}{% elif answer.user_answer == 2 %}{{answer.question.option2}}{% elif answer.user_answer == 3 %}{{answer.question.option3}}{%else%}{{answer.question.option4}}{%endif%}</span><br>
+            {% else %}
+                <p style="font-size: 42px; font-weight: 400; margin-bottom: 0px">Выбранный ответ:</p> <span style="color: red; font-size: 30px; font-weight: 400; margin-bottom: 0px;">{% if answer.user_answer == 1 %}{{answer.question.option1}}{% elif answer.user_answer == 2 %}{{answer.question.option2}}{% elif answer.user_answer == 3 %}{{answer.question.option3}}{%else%}{{answer.question.option4}}{%endif%}</span><br>
+            {% endif %}
+            <hr>
+        {% endfor %}
+        <p style="font-size: 42px; font-weight: 400; margin-bottom: 0px">Результат:</p>
+        <p style="font-size: 30px; font-weight: 400; margin-bottom: 0px">{{goodq}}/{{allq}} ({{percentage}}%)</p>
+    {% else %}
+        У вас нет доступа к просмотру этого результата
+    {% endif %}
+{% endblock %}
