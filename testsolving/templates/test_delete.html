@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        Удалить тест "{{test.title}}"?<br>
+        <button type="submit" class="btn btn-danger mt-3">Удалить</button>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Отмена</a>
+    </form>
+{% endblock %}
