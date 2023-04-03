@@ -9,7 +9,7 @@
     {% for form in formset %} 
       {% for x in form %}
         {% if forloop.counter == 1 %} 
-          Вопрос: {{ x.text }}<br>
+          Вопрос: {{ x.text|linebreaks }}<br>
           1) {{ x.option1 }}<br>
           2) {{ x.option2 }}<br>
           3) {{ x.option3 }}<br>
