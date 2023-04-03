@@ -100,7 +100,6 @@ def solve_test(request, test_id):
         for x in range(1, len(questions) + 1):
             User_Answer = UserAnswer(question=questions[x - 1], user=request.user, user_answer=request.POST.get('user_answer_' + str(x)), test_result=test_result)
             User_Answer.save()
-            print(User_Answer)
             user_answers.append(User_Answer)
             
         return redirect('result', result_id=test_result.pk)
@@ -108,7 +107,7 @@ def solve_test(request, test_id):
         formset = []
         for question in questions:
             formset.append([question, UserAnswerForm()])
-    return render(request, 'solve_test.html', {'test': test, 'formset': formset})
+    return render(request, 'solve_test.html', {'user': request.user, 'test': test, 'formset': formset})
 
 @login_required
 def test_details(request, test_id):
