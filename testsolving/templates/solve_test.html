@@ -27,6 +27,8 @@
       <hr>
     {% endfor %}
     <button type="submit" class="btn btn-primary mt-3">Закончить прохождение теста</button>
-    <a href="{% url 'test_delete' test.id %}" class="btn btn-secondary mt-3">Удалить тест</a>
+    {% if user == test.author %}
+      <a href="{% url 'test_delete' test.id %}" class="btn btn-secondary mt-3">Удалить тест</a>
+    {% endif %}
   </form>
 {% endblock %}
