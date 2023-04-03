@@ -55,6 +55,8 @@ def create_test(request):
         test_form = TestForm(request.POST)
         if test_form.is_valid():
             test = test_form.save(commit=False)
+            test.title = test.title.replace(' ', '⠀')
+            test.description = test.description.replace(' ', '⠀')
             test.author = request.user
             test.save()
             messages.success(request, 'Test created successfully.')
@@ -81,6 +83,11 @@ def add_questions(request, test_id):
         if question_form.is_valid():
             question = question_form.save(commit=False)
             question.test = test
+            question.text = question.text.replace(' ', '⠀')
+            question.option1 = question.option1.replace(' ', '⠀')
+            question.option2 = question.option2.replace(' ', '⠀')
+            question.option3 = question.option3.replace(' ', '⠀')
+            question.option4 = question.option4.replace(' ', '⠀')
             question.save()
             messages.success(request, 'Question added successfully.')
             return redirect('add_questions', test_id=test.pk)
