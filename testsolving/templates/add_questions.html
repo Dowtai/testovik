@@ -4,8 +4,19 @@
   <h2>Добавить вопрос для теста "{{ test.title }}"</h2>
   <form method="post">
     {% csrf_token %}
-    {{ question_form.as_p }}
+    Вопрос:<br>
+    {{question_form.text}}<br>
+    Вариант ответа 1:<br>
+    {{question_form.option1}}<br>
+    Вариант ответа 2:<br>
+    {{question_form.option2}}<br>
+    Вариант ответа 3:<br>
+    {{question_form.option3}}<br>
+    Вариант ответа 4:<br>
+    {{question_form.option4}}<br>
     * - обязательное поле<br>
+    Правильный ответ:<br>
+    {{question_form.correct_answer}}<br>
     <button type="submit" class="btn btn-primary mt-3">Сохранить вопрос</button>
     <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Закончить создание теста</a>
   </form>
